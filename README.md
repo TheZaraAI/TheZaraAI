@@ -71,6 +71,8 @@ I don't write traditional software. What I do is design, orchestrate, and ship *
   <img src="https://img.shields.io/badge/Claude_Code-Anthropic_CLI-A855F7?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code" />
   <img src="https://img.shields.io/badge/Claude_API-Anthropic-7C3AED?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude API" />
   <img src="https://img.shields.io/badge/Claude_Co--Work-Agent_Collaboration-6D28D9?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Co-Work" />
+  <img src="https://img.shields.io/badge/ChatGPT-OpenAI-74AA9C?style=for-the-badge&logo=openai&logoColor=white" alt="ChatGPT" />
+  <img src="https://img.shields.io/badge/Gemini-Google-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Gemini" />
 </p>
 
 **Automation Platforms**
@@ -81,12 +83,27 @@ I don't write traditional software. What I do is design, orchestrate, and ship *
   <img src="https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white" alt="n8n" />
 </p>
 
+**AI Media & Content**
+
+<p align="left">
+  <img src="https://img.shields.io/badge/HeyGen-AI_Video-5A4FF3?style=for-the-badge" alt="HeyGen" />
+  <img src="https://img.shields.io/badge/ElevenLabs-AI_Voice-000000?style=for-the-badge&logo=elevenlabs&logoColor=white" alt="ElevenLabs" />
+  <img src="https://img.shields.io/badge/Pictory-AI_Video-B08D57?style=for-the-badge" alt="Pictory" />
+</p>
+
 **Data & No-Code**
 
 <p align="left">
   <img src="https://img.shields.io/badge/Airtable-18BFFF?style=for-the-badge&logo=airtable&logoColor=white" alt="Airtable" />
   <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion" />
   <img src="https://img.shields.io/badge/Workflow_Automation-AI_Agent_Orchestration-A855F7?style=for-the-badge" alt="Workflow Automation" />
+</p>
+
+**Build Tools & IDEs**
+
+<p align="left">
+  <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VS Code" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
 </p>
 
 ---
