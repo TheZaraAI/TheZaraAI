@@ -33,7 +33,6 @@
 | `assets/js/main.js` | Copy buttons, mobile nav, scroll spy, checklist state. No dependencies, no tracking |
 | `assets/img/mark.svg` | Original inline SVG mark / favicon |
 | `README.md` | This walkthrough |
-| `LINKEDIN_POST.md` | The ready-to-publish LinkedIn post, its first comment, and the funnel link map |
 | `.nojekyll` | Tells GitHub Pages to serve the files as-is |
 
 No secrets, cookies, tokens, API keys, or credentials are stored anywhere in this repository — and none should be added to a fork.
@@ -357,8 +356,6 @@ Rules that keep the funnel honest, and that a fork should keep:
 - **No tracking scripts.** `assets/js/main.js` still makes zero network calls. Attribution comes from UTM parameters on outbound clicks, nothing else.
 - **No guaranteed outcomes.** The call is described as free, fifteen minutes, and no obligation. It does not promise leads, meetings, or revenue, and neither should any edit to it.
 - **The educational content comes first.** CTAs were added around the guide, not into it. No compliance rule, source credit, or safety warning was shortened to make room.
-
-The ready-to-publish LinkedIn post and its first comment live in [`LINKEDIN_POST.md`](LINKEDIN_POST.md), fenced as plain text so line breaks survive copy-paste. That file also records which URL belongs in the post versus the in-guide buttons.
 
 ---
 
