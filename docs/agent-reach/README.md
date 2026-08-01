@@ -19,6 +19,7 @@
 - [Troubleshooting](#troubleshooting)
 - [Final checklist](#final-checklist)
 - [Publishing this guide with GitHub Pages](#publishing-this-guide-with-github-pages)
+- [Where this guide points readers](#where-this-guide-points-readers)
 - [Credit, sources, and licence](#credit-sources-and-licence)
 
 ---
@@ -32,7 +33,7 @@
 | `assets/js/main.js` | Copy buttons, mobile nav, scroll spy, checklist state. No dependencies, no tracking |
 | `assets/img/mark.svg` | Original inline SVG mark / favicon |
 | `README.md` | This walkthrough |
-| `LINKEDIN_POST.md` | A ready-to-publish LinkedIn post |
+| `LINKEDIN_POST.md` | The ready-to-publish LinkedIn post, its first comment, and the funnel link map |
 | `.nojekyll` | Tells GitHub Pages to serve the files as-is |
 
 No secrets, cookies, tokens, API keys, or credentials are stored anywhere in this repository — and none should be added to a fork.
@@ -391,6 +392,33 @@ This guide is a plain static bundle — no build step, no backend, no dependenci
 3. The guide is served at `https://<user>.github.io/<repo>/`.
 
 Keep the `.nojekyll` file so GitHub Pages serves everything as-is. Verify after deploy that the stylesheet, script, and favicon all load, and that the in-page anchors still work at whatever subpath you chose.
+
+---
+
+## Where this guide points readers
+
+The guide is free and gated behind nothing — no email, no signup, no form. Everything in it is reproducible without contacting TheZaraAI at all. Two optional calls to action sit alongside that content, one in the hero and one as a closing section before the credits.
+
+| CTA | Destination | Who it is for |
+| --- | --- | --- |
+| Book a free 15-minute workflow call | `https://calendly.com/thezaraai/discovery-call` | HVAC and construction firms mapping their own lead-response process. A working session, not a pitch. |
+| Get the free AI Field Manual | `https://thezaraai.com/#handbook` | Lower-intent readers who would rather receive a written resource by email than talk to anyone. |
+
+Both in-guide links carry UTM parameters so guide traffic stays attributable:
+
+```
+?utm_source=github&utm_medium=agent_reach_guide&utm_campaign=home_services   # the call
+?utm_source=github&utm_medium=agent_reach_guide&utm_campaign=agent_reach     # the Field Manual
+```
+
+Rules that keep the funnel honest, and that a fork should keep:
+
+- **No email capture on GitHub Pages.** There is no form, no embedded iframe, and no third-party script in this bundle. Email collection happens only on TheZaraAI behind its existing protected form, which is why the Field Manual is a deep link rather than an inline signup.
+- **No tracking scripts.** `assets/js/main.js` still makes zero network calls. Attribution comes from UTM parameters on outbound clicks, nothing else.
+- **No guaranteed outcomes.** The call is described as free, fifteen minutes, and no obligation. It does not promise leads, meetings, or revenue, and neither should any edit to it.
+- **The educational content comes first.** CTAs were added around the guide, not into it. No compliance rule, source credit, or safety warning was shortened to make room.
+
+The ready-to-publish LinkedIn post and its first comment live in [`LINKEDIN_POST.md`](LINKEDIN_POST.md), fenced as plain text so line breaks survive copy-paste. That file also records which URL belongs in the post versus the in-guide buttons.
 
 ---
 

@@ -150,6 +150,8 @@ section[id] { scroll-margin-top: 5.5rem; }
 .btn:hover { border-color: var(--text-muted); background: var(--surface); }
 .btn--primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .btn--primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); color: var(--accent-ink); }
+.btn--cta { border-color: var(--accent); color: var(--accent); }
+.btn--cta:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
 /* ---------- Callouts / cards ---------- */
 .card {
@@ -284,6 +286,27 @@ details[open] summary::after { content: "–"; }
 .site-footer p { color: var(--text-muted); font-size: var(--text-sm); }
 .footer__bottom { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: space-between; font-size: var(--text-xs); color: var(--text-faint); font-family: var(--font-mono); }
 
+/* ---------- CTA / funnel ---------- */
+.u-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.hero__cta-note {
+  margin-top: var(--space-4); max-width: 52ch;
+  font-size: var(--text-sm); color: var(--text-muted);
+}
+.section--cta { background: var(--bg-alt); border-top: 1px solid var(--border); }
+.cta {
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem); align-items: start;
+}
+@media (max-width: 900px) { .cta { grid-template-columns: 1fr; } }
+.cta__main h2 { font-size: var(--text-2xl); }
+.cta__main p { color: var(--text-muted); max-width: 56ch; }
+.cta__fineprint { font-size: var(--text-sm); color: var(--text-faint); }
+.cta__aside { border-top: 2px solid var(--accent); }
+.cta__aside .btn { margin-top: var(--space-2); }
+
 /* ---------- Reveal on scroll ---------- */
 .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.is-in { opacity: 1; transform: none; }
@@ -294,4 +317,7 @@ details[open] summary::after { content: "–"; }
   .site-header, .btn-row, .copy-btn { display: none; }
   body { background: #fff; color: #000; }
   .card, .code, details { border-color: #ccc; }
+  /* Buttons are hidden in print, so surface the CTA destinations as readable URLs instead. */
+  .section--cta .btn-row { display: block; }
+  .section--cta a[href^="http"]::after { content: " — " attr(href); word-break: break-all; }
 }
