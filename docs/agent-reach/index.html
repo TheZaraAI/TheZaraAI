@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Reach for Claude Code — Install &amp; Validation Guide | TheZaraAI</title>
+<meta name="description" content="How TheZaraAI installed and validated Agent Reach for Claude Code: exact commands, a doctor check, a research-to-outreach architecture, safe-use rules, and a troubleshooting guide.">
+<meta name="author" content="Jax — TheZaraAI">
+<meta name="theme-color" content="#0C0C0B">
+<link rel="canonical" href="https://thezaraai.github.io/TheZaraAI/agent-reach/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent Reach for Claude Code — Install &amp; Validation Guide">
+<meta property="og:description" content="Exact install commands, a doctor validation pass, a research-to-outreach architecture, and the safe-use rules TheZaraAI applies before any data touches a campaign.">
+<meta property="og:url" content="https://thezaraai.github.io/TheZaraAI/agent-reach/">
+<meta property="og:image" content="https://thezaraai.github.io/TheZaraAI/agent-reach/assets/img/mark.svg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=general-sans@400,500,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Agent Reach for Claude Code — Install & Validation Guide",
+  "description": "How TheZaraAI installed and validated Agent Reach for Claude Code, and how it fits a compliant research-to-outreach workflow.",
+  "author": { "@type": "Organization", "name": "TheZaraAI", "url": "https://thezaraai.com" },
+  "publisher": { "@type": "Organization", "name": "TheZaraAI", "url": "https://thezaraai.com" },
+  "about": "Agent Reach, Claude Code, AI research tooling",
+  "citation": "https://github.com/Panniantong/Agent-Reach"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top" aria-label="TheZaraAI — Agent Reach guide home">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="10" cy="22" r="2.6" fill="currentColor"/>
+        <path d="M10 15.5a6.5 6.5 0 0 1 6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+        <path d="M10 9.5A12.5 12.5 0 0 1 22.5 22" stroke="currentColor" stroke-width="2" stroke-linecap="square" opacity=".55"/>
+        <path d="M22.5 6.5h3.5V10" stroke="#F2EFE7" stroke-width="2" stroke-linecap="square"/>
+      </svg>
+      <span>TheZaraAI<small>Build log</small></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <nav class="site-nav" id="siteNav" aria-label="Section navigation">
+      <a href="#quickstart">Quick start</a>
+      <a href="#install">Install</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#hvac">HVAC example</a>
+      <a href="#safety">Safe use</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#checklist">Checklist</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">Field notes · Build log</p>
+        <h1>We gave Claude Code a <em>research layer</em>. Here is exactly how.</h1>
+        <p class="hero__lede">
+          A step-by-step, reproducible walkthrough of how Jax at TheZaraAI installed and validated
+          <strong>Agent Reach</strong> for Claude Code — plus the guardrails we put around it before
+          a single record touches an outreach campaign.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#quickstart">Jump to quick start</a>
+          <a class="btn" href="https://github.com/Panniantong/Agent-Reach" rel="noopener">Agent Reach on GitHub</a>
+        </div>
+        <div class="hero__meta">
+          <span><b>Stack</b> Claude Code · Python 3 · npx</span>
+          <span><b>Time</b> ~10 minutes</span>
+          <span><b>Cost</b> No paid API keys required</span>
+        </div>
+      </div>
+
+      <aside class="card" aria-labelledby="tldr">
+        <h3 id="tldr">TL;DR</h3>
+        <p>Agent Reach is a scaffolding CLI that installs and wires up the upstream tools an AI agent needs to read the open web — then tells you what works with one diagnostic command
+          (<a href="https://github.com/Panniantong/Agent-Reach" rel="noopener">Panniantong/Agent-Reach</a>).</p>
+        <p>It is <strong>research infrastructure</strong>. It does not produce qualified leads, and this guide does not treat it as if it does.</p>
+        <p><span style="color:var(--accent)">→</span> Five commands. One <code>doctor</code> check. Then the boring, important part: scope, validation, and human review.</p>
+        <p style="margin-bottom:0; color:var(--text-faint); font-size:var(--text-sm)">Agent Reach is third-party open-source software we use internally. It is not a TheZaraAI product, sub-brand, or separate company.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ CONTEXT ============ -->
+  <section class="section" id="why">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">01 / Context</div>
+        <div>
+          <h2>Why we added a research layer</h2>
+          <p class="section__sub">TheZaraAI runs an AI-assisted lead-generation workflow. The weakest link was never the sending
+            infrastructure — it was the research in front of it.</p>
+        </div>
+      </div>
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>The problem</h3>
+          <p>Research on local HVAC and construction firms was manual, inconsistent, and slow. Every prospect list arrived with different fields, different freshness, and no traceable source.</p>
+        </div>
+        <div class="card">
+          <h3>The hypothesis</h3>
+          <p>If the agent can read public sources directly — the open web, RSS, GitHub, YouTube transcripts — research becomes repeatable and citable instead of ad hoc.</p>
+        </div>
+        <div class="card">
+          <h3>The honest scope</h3>
+          <p>Better inputs, not automatic outcomes. Nothing here shortens the work of defining an ICP, validating data, or reviewing a message before it ships.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <div class="note__label">How this fits TheZaraAI</div>
+        <p style="margin-bottom:0">Agent Reach is <strong>internal research infrastructure</strong>, not something we sell, rebrand, or spin out.
+          The commercial offer stays exactly where it is — under TheZaraAI — with HVAC and selected construction firms as the initial vertical.
+          There is no separate product name, no DBA, and no new entity behind this work.</p>
+      </div>
+
+      <div class="note note--warn">
+        <div class="note__label">What this is not</div>
+        <p style="margin-bottom:0">Agent Reach does not generate qualified leads, book meetings, or produce revenue on its own. It is a read layer.
+          Everything downstream — ICP definition, data validation, compliant enrichment, message quality, and human review — is still your job.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUICK START ============ -->
+  <section class="section section--alt" id="quickstart">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">02 / Quick start</div>
+        <div>
+          <h2>The whole install, in one block</h2>
+          <p class="section__sub">Copy, paste, run in order. Each command is explained in the next section. Run these from your normal terminal, not from inside a Claude Code session.</p>
+        </div>
+      </div>
+
+      <div class="code">
+        <div class="code__bar">
+          <span class="code__title">bash · verified sequence</span>
+          <button class="copy-btn" type="button" data-copy="#qs-code">Copy</button>
+        </div>
+<pre><code id="qs-code"><span class="c"># 1. Add the Agent Reach skill (choose Claude Code at the prompt)</span>
+<span class="p">npx</span> skills add Panniantong/Agent-Reach@agent-reach
+
+<span class="c"># 2. Install the CLI from source</span>
+<span class="p">python3</span> -m pip install "https://github.com/Panniantong/agent-reach/archive/main.zip"
+
+<span class="c"># 3. Detect the environment and install the upstream tools</span>
+<span class="p">agent-reach</span> install --env=auto
+
+<span class="c"># 4. Validate every channel</span>
+<span class="p">agent-reach</span> doctor
+
+<span class="c"># 5. Restart / open Claude Code so it picks up the new skill</span>
+<span class="p">claude</span></code></pre>
+      </div>
+      <p class="prose" style="color:var(--text-muted)">Prerequisites: Node.js (for <code>npx</code>), Python 3 with <code>pip</code>, Git, and Claude Code already installed and authenticated.</p>
+    </div>
+  </section>
+
+  <!-- ============ STEP BY STEP ============ -->
+  <section class="section" id="install">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">03 / Walkthrough</div>
+        <div>
+          <h2>Step by step, with what to expect</h2>
+          <p class="section__sub">This is the exact sequence Jax ran. Nothing has been reordered or cleaned up after the fact.</p>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <div class="step__n">STEP 01</div>
+          <div>
+            <h3>Add the skill</h3>
+            <p>The skill installer registers Agent Reach's <code>SKILL.md</code> in your agent's skills directory so the agent knows which upstream tool to reach for.</p>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#s1">Copy</button></div>
+<pre><code id="s1"><span class="p">npx</span> skills add Panniantong/Agent-Reach@agent-reach</code></pre>
+            </div>
+            <p><strong>At the prompt, select Claude Code.</strong> Select Codex only if you actually use it — every extra target is another config surface you have to maintain and audit. We selected Claude Code only.</p>
+          </div>
+        </li>
+
+        <li class="step reveal">
+          <div class="step__n">STEP 02</div>
+          <div>
+            <h3>Install the CLI</h3>
+            <p>The skill files alone do not give you the <code>agent-reach</code> command. Install the Python package from the repository archive:</p>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#s2">Copy</button></div>
+<pre><code id="s2"><span class="p">python3</span> -m pip install "https://github.com/Panniantong/agent-reach/archive/main.zip"</code></pre>
+            </div>
+            <p>Keep the quotes — some shells will otherwise choke on the URL. If your system Python is managed and blocks installs, see <a href="#troubleshooting">Troubleshooting</a> for the virtual-environment route.</p>
+          </div>
+        </li>
+
+        <li class="step reveal">
+          <div class="step__n">STEP 03</div>
+          <div>
+            <h3>Run the installer</h3>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#s3">Copy</button></div>
+<pre><code id="s3"><span class="p">agent-reach</span> install --env=auto</code></pre>
+            </div>
+            <p><code>--env=auto</code> detects whether you are on a local machine or a server and installs the upstream dependencies accordingly — Node tooling, the GitHub CLI, transcript tooling, an MCP-based search connector, and the channel adapters
+              (<a href="https://github.com/Panniantong/Agent-Reach" rel="noopener">project README</a>).</p>
+            <p><strong>Read the output before you accept it.</strong> This step installs software on your machine. On a shared box or a production server, prefer the project's safer variants: <code>--dry-run</code> to preview, or <code>--safe</code> for a restricted install.</p>
+          </div>
+        </li>
+
+        <li class="step reveal">
+          <div class="step__n">STEP 04</div>
+          <div>
+            <h3>Validate with <code>doctor</code></h3>
+            <p>This is the step most people skip and then debug for an hour. <code>doctor</code> reports, channel by channel, what is ready, what is missing, and how to fix it.</p>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#s4">Copy</button></div>
+<pre><code id="s4"><span class="p">agent-reach</span> doctor</code></pre>
+            </div>
+            <p>Treat the output as your acceptance test. We only marked the install "done" once the channels we intended to use reported healthy — and we deliberately left the authenticated, cookie-based channels unconfigured. See <a href="#safety">Safe use</a>.</p>
+          </div>
+        </li>
+
+        <li class="step reveal">
+          <div class="step__n">STEP 05</div>
+          <div>
+            <h3>Restart Claude Code</h3>
+            <p>A running session will not see a skill that was registered after it started. Quit the session, then open a new one:</p>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#s5">Copy</button></div>
+<pre><code id="s5"><span class="p">claude</span></code></pre>
+            </div>
+            <p>Then confirm it landed with a small, low-stakes request — fetch a public page, pull an RSS feed, or read a public GitHub repository — before you point it at anything that matters.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section class="section section--alt" id="architecture">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">04 / Architecture</div>
+        <div>
+          <h2>Where the research layer actually sits</h2>
+          <p class="section__sub">Agent Reach occupies exactly one box in this diagram. The boxes on either side of it are where the quality comes from.</p>
+        </div>
+      </div>
+
+      <ol class="pipeline">
+        <li><span class="k">Stage 01</span><b>Public sources</b><span class="d">Open web pages, RSS/Atom feeds, public GitHub repositories, YouTube transcripts, platform-approved APIs.</span></li>
+        <li><span class="k">Stage 02</span><b>Agent Reach research</b><span class="d">The agent reads and summarises those sources on request, with the source URL kept alongside every claim.</span></li>
+        <li><span class="k">Stage 03</span><b>Validation &amp; enrichment</b><span class="d">Deduplicate, verify against a second source, confirm the record is current, enrich only through compliant, licensed providers.</span></li>
+        <li><span class="k">Stage 04</span><b>CRM / Instantly</b><span class="d">Only validated records enter the system of record, each carrying its source and the date it was captured.</span></li>
+        <li><span class="k">Stage 05</span><b>Personalised outreach</b><span class="d">Human-reviewed messaging grounded in a verifiable, public fact — with suppression lists and opt-out honoured before send.</span></li>
+        <li><span class="k">Stage 06</span><b>Measurement</b><span class="d">Reply quality, meetings booked, and complaint rate. Research quality is judged by outcomes, not by volume collected.</span></li>
+      </ol>
+
+      <div class="note">
+        <div class="note__label">The rule we hold ourselves to</div>
+        <p style="margin-bottom:0">No record moves from Stage 02 to Stage 04 without a source URL, a validation check, and a named human who reviewed it.
+          A research layer that lets you skip those steps is not a speed-up — it is a liability generator.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HVAC / CONSTRUCTION WORKED EXAMPLE ============ -->
+  <section class="section" id="hvac">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">05 / Worked example</div>
+        <div>
+          <h2>HVAC and construction firms, end to end</h2>
+          <p class="section__sub">HVAC and selected construction firms are TheZaraAI's initial vertical, and this is the primary use case for the
+            research layer — so it is worth showing in full. Everything below runs on publicly available
+            information and platform-approved APIs. Agent Reach does the reading in stages 1 and 2 only — it does not access logged-in
+            social accounts, and it does not produce a qualified lead on its own.</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:var(--text-lg)">Sample ICP filters</h3>
+      <p class="prose" style="color:var(--text-muted)">Write these down <em>before</em> you research anything. An undefined ICP turns a research layer into a list generator.</p>
+      <div class="table-wrap" style="margin-bottom:var(--space-8)">
+        <table>
+          <thead>
+            <tr><th scope="col">Filter</th><th scope="col">HVAC (residential / light commercial)</th><th scope="col">Construction (remodel / general contracting)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Trade &amp; classification</td><td>HVAC service, repair, and replacement — NAICS 238220</td><td>Residential remodel, GC, roofing, or specialty trade — NAICS 236118 / 238xxx</td></tr>
+            <tr><td>Company size</td><td>3–25 field technicians, 2–15 service vehicles</td><td>5–50 employees, owner still involved in estimating</td></tr>
+            <tr><td>Service area</td><td>Within a defined metro or 45-minute drive radius; 3–6 ZIP clusters</td><td>Single metro or county footprint; no national coverage</td></tr>
+            <tr><td>Decision maker</td><td>Owner / operator, general manager, or service manager</td><td>Owner, principal, or head of preconstruction / estimating</td></tr>
+            <tr><td>Licence status</td><td>Active state or county mechanical licence, in good standing</td><td>Active contractor licence at the appropriate class and limit</td></tr>
+            <tr><td>Digital maturity</td><td>Live website and a claimed Google Business Profile, but no online booking or same-day quote path</td><td>Website with a project gallery, but a contact form as the only intake</td></tr>
+            <tr><td>Hard exclusions</td><td colspan="2">National franchises and PE roll-ups, firms outside the service radius, records with no verifiable licence or address, anyone on the suppression or do-not-contact list, and any record whose source URL cannot be re-checked.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:var(--text-lg)">Where the data legitimately comes from</h3>
+      <div class="grid grid--3" style="margin-bottom:var(--space-8)">
+        <div class="card">
+          <h3>Google Business Profile</h3>
+          <p>Publicly listed firm name, category, address, service area, hours, rating, and website — read from public listing pages or, where you need it at volume, through the official Places API under its terms and your own key.</p>
+        </div>
+        <div class="card">
+          <h3>Company websites</h3>
+          <p>Services offered, service-area pages, brands installed, team and "about" pages, careers pages, financing options, and stated response times. The richest and least ambiguous source.</p>
+        </div>
+        <div class="card">
+          <h3>Public directories &amp; associations</h3>
+          <p>Public business directory listings, BBB profiles, and trade-body member directories such as ACCA, PHCC, NAHB, or NARI. Read the public page; do not create accounts to get behind a gate.</p>
+        </div>
+        <div class="card">
+          <h3>Permit &amp; licensing records</h3>
+          <p>State contractor and mechanical licence boards, and municipal or county permit portals — <strong>where the data is published for public access and the terms allow automated reading</strong>. Check the portal's terms and rate limits first; some require a formal records request instead.</p>
+        </div>
+        <div class="card">
+          <h3>Public social &amp; business pages</h3>
+          <p>Only pages a signed-out visitor can see: a public company page, a public job post, a public YouTube channel and its transcripts. No logged-in sessions, no cookie reuse, no gated profile data.</p>
+        </div>
+        <div class="card">
+          <h3>Approved data providers</h3>
+          <p>For contact-level detail: licensed B2B data and email-verification vendors with a documented lawful basis and a contract. This is enrichment, not collection — and it happens after the firm already passed the ICP filter.</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:var(--text-lg)">The compliant workflow</h3>
+      <ol class="steps" style="margin-bottom:var(--space-8)">
+        <li class="step">
+          <div class="step__n">STAGE 01</div>
+          <div>
+            <h3>Discover firms in the service area</h3>
+            <p>Ask the agent for HVAC and construction firms operating in the target ZIP clusters, and require a source URL for every row. Output is a raw candidate list — nothing more.</p>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">example brief to the agent</span><button class="copy-btn" type="button" data-copy="#h1">Copy</button></div>
+<pre><code id="h1"><span class="c"># Paste into Claude Code after the install is validated</span>
+Build a candidate list of independent HVAC and residential construction
+firms serving ZIP codes 27601, 27604, 27609, 27612.
+
+Use only publicly accessible sources: public business listings, company
+websites, public trade-association directories, and public licence or
+permit records where the site's terms allow automated reading.
+Do not use logged-in sessions, cookies, or gated profile data.
+
+For each firm return: legal/trading name, website, city, service area,
+services offered, apparent headcount signal, licence number if public,
+and the exact source URL for every field. Mark anything you inferred
+as "inferred" rather than stating it as fact.</code></pre>
+            </div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step__n">STAGE 02</div>
+          <div>
+            <h3>Validate the firm and the decision-maker role</h3>
+            <p>A name on a website is not a validated contact. We require <strong>two independent public sources</strong> agreeing on both the company and the person's role before the record advances.</p>
+            <ul class="prose" style="color:var(--text-muted)">
+              <li><strong>Company exists and is active:</strong> licence board record, business registration or Secretary of State filing, and a live website.</li>
+              <li><strong>Role is real and current:</strong> the licence holder or qualifying party named on the public licence record, an "our team" or "about" page, a permit applicant name, or a signed public post from the company page.</li>
+              <li><strong>Still trading:</strong> recent reviews, a recent permit, a current job post, or a dated site update within the last 6–12 months.</li>
+              <li><strong>Reject on sight:</strong> role that only appears in one unverifiable place, franchise-owned locations, and any record whose source URL no longer resolves.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step__n">STAGE 03</div>
+          <div>
+            <h3>Enrich through approved providers only</h3>
+            <p>Business contact details come from licensed providers under contract, not from harvesting. Every enriched field carries its provider, the retrieval date, and a lawful basis. Verify deliverability before send, honour suppression and opt-out lists at ingestion, and drop any record the provider cannot substantiate.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step__n">STAGE 04</div>
+          <div>
+            <h3>Segment by service area, size, and signal</h3>
+            <p>Segmentation is what makes the later message specific. We split on three axes and treat each combination as its own small campaign.</p>
+            <ul class="prose" style="color:var(--text-muted)">
+              <li><strong>Service area:</strong> ZIP cluster or drive-time band — it changes the local proof points you can cite.</li>
+              <li><strong>Size band:</strong> owner-operator (1–4), small crew (5–15), established (16–50). Each has a different bottleneck and a different buyer.</li>
+              <li><strong>Signal:</strong> the specific, dated, public trigger below. No trigger, no personalised angle — the record waits in the nurture segment instead.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step__n">STAGE 05</div>
+          <div>
+            <h3>Route qualified records into Instantly</h3>
+            <p>Only records that cleared stages 2 and 3, carry a source URL, and passed human review get uploaded. One campaign per segment, custom fields mapped so the personalisation is grounded in the verified fact rather than invented.</p>
+            <div class="code">
+              <div class="code__bar"><span class="code__title">record schema · one row per firm</span><button class="copy-btn" type="button" data-copy="#h2">Copy</button></div>
+<pre><code id="h2">company_name, trade, website, city, state, zip, service_area
+size_band, licence_number, licence_status, licence_source_url
+contact_first_name, contact_role, role_source_url
+email, email_verification_status, enrichment_provider, enrichment_date
+trigger_signal, trigger_date, trigger_source_url
+segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
+            </div>
+            <p>Then keep sending volume inside your warmed capacity, watch complaint and bounce rates as hard stops, and pull the campaign — not just the record — if either drifts.</p>
+          </div>
+        </li>
+      </ol>
+
+      <h3 style="font-size:var(--text-lg)">Trigger signals worth acting on</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Signal</th><th scope="col">Public source</th><th scope="col">Why it matters</th></tr></thead>
+          <tbody>
+            <tr><td>Hiring installers, techs, or estimators</td><td>Careers page, public job post</td><td>Demand is outrunning capacity — intake and scheduling are under strain</td></tr>
+            <tr><td>New or upgraded contractor licence class</td><td>State licence board record</td><td>The firm is moving into larger or different work</td></tr>
+            <tr><td>Rising permit volume or a first permit in a new municipality</td><td>Public permit portal, where lawful to read</td><td>Geographic or volume expansion, usually before the back office catches up</td></tr>
+            <tr><td>New location, second yard, or fleet expansion</td><td>Website, public business listing, public company page</td><td>Growth spend is already committed; operational gaps get expensive fast</td></tr>
+            <tr><td>Reviews mentioning slow quotes or missed callbacks</td><td>Public review content on business listings</td><td>A named, verifiable operational problem you can speak to directly</td></tr>
+            <tr><td>No online booking or after-hours intake</td><td>Company website</td><td>Observable gap, easy to reference without guessing at internals</td></tr>
+            <tr><td>Seasonal inflection — pre-cooling or pre-heating season</td><td>Calendar plus local weather reporting</td><td>Timing, not personalisation: the same message lands differently in April</td></tr>
+            <tr><td>New financing, maintenance plan, or service agreement page</td><td>Company website changelog or new page</td><td>The firm is investing in recurring revenue and is open to process change</td></tr>
+            <tr><td>Recent trade-association membership or certification</td><td>Public association directory</td><td>Signals a firm that invests in standards — usually a better-fit buyer</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note note--warn">
+        <div class="note__label">Say this out loud before you start</div>
+        <p style="margin-bottom:0">None of this guarantees leads. It produces a defensible, source-linked shortlist of HVAC and construction firms that match a
+          defined ICP. Whether that turns into pipeline depends on the offer, the message, the timing, and the humans reviewing it —
+          not on the research tool.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SAFETY ============ -->
+  <section class="section section--alt" id="safety">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">06 / Safe use</div>
+        <div>
+          <h2>Safe, compliant use — read this before you point it at anything</h2>
+          <p class="section__sub">Agent Reach supports more channels than we use. That is a deliberate choice on our side, not a limitation of the tool.
+            We restrict ourselves to public and platform-approved sources.</p>
+        </div>
+      </div>
+
+      <div class="dd">
+        <div class="dd__col dd__col--yes">
+          <h3>What we use it for</h3>
+          <ul>
+            <li>Public web pages and general web search</li>
+            <li>RSS and Atom feeds</li>
+            <li>Public GitHub repositories, issues, and code search</li>
+            <li>YouTube transcripts of publicly available videos</li>
+            <li>Official, platform-approved APIs and tools, used within their terms and rate limits</li>
+            <li>Published company material: docs, changelogs, pricing pages, job posts, press releases</li>
+          </ul>
+        </div>
+        <div class="dd__col dd__col--no">
+          <h3>What we do not do</h3>
+          <ul>
+            <li>Export browser cookies or reuse session tokens to impersonate a logged-in user</li>
+            <li>Work around login walls, paywalls, or rate limits</li>
+            <li>Bypass or disable any platform control, CAPTCHA, or access restriction</li>
+            <li>Collect from authenticated X, LinkedIn, Instagram, or Reddit sessions</li>
+            <li>Collect personal data beyond what a legitimate business purpose requires</li>
+            <li>Ignore <code>robots.txt</code>, terms of service, or a platform's stated automation policy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note note--warn" style="margin-top:2rem">
+        <div class="note__label">Non-negotiables</div>
+        <ul style="margin:0; padding-left:1.1rem; color:var(--text-muted)">
+          <li>Never commit credentials, cookies, tokens, or API keys to a repository. This guide contains none, and neither should your fork.</li>
+          <li>Respect privacy law — GDPR, CCPA, CAN-SPAM, and local equivalents. Keep a lawful basis, honour deletion and opt-out requests, and keep suppression lists current.</li>
+          <li>Rate-limit yourself. Polite, low-volume reading is both more defensible and less likely to break.</li>
+          <li>Review the tool's own scope before extending it. Enabling a channel is a decision with legal and account consequences, not a config toggle.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TROUBLESHOOTING ============ -->
+  <section class="section" id="troubleshooting">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">07 / Troubleshooting</div>
+        <div>
+          <h2>The four things that actually go wrong</h2>
+          <p class="section__sub">In order of how often we hit them.</p>
+        </div>
+      </div>
+
+      <details open>
+        <summary><code>agent-reach: command not found</code></summary>
+        <div class="details__body">
+          <p>The package installed, but the executable is not on your <code>PATH</code>. Check whether Python can still see it, then add the user script directory to your shell profile:</p>
+          <div class="code">
+            <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#t1">Copy</button></div>
+<pre><code id="t1"><span class="c"># Does the module exist even though the shim is missing?</span>
+<span class="p">python3</span> -m agent_reach --help
+
+<span class="c"># Where does pip put user scripts?</span>
+<span class="p">python3</span> -m site --user-base
+
+<span class="c"># macOS / Linux — append to ~/.zshrc or ~/.bashrc</span>
+<span class="p">export</span> PATH="$(python3 -m site --user-base)/bin:$PATH"
+
+<span class="c"># Reload the shell config</span>
+<span class="p">source</span> ~/.zshrc</code></pre>
+          </div>
+          <p>On Windows, the equivalent directory is <code>%APPDATA%\Python\Python3x\Scripts</code>. Open a new terminal after changing <code>PATH</code> — the current one will not pick it up.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Python or pip refuses to install</summary>
+        <div class="details__body">
+          <p>Modern Python distributions mark the system environment as externally managed and block direct installs. Do not force it with <code>--break-system-packages</code>. Use a virtual environment or a user install instead:</p>
+          <div class="code">
+            <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#t2">Copy</button></div>
+<pre><code id="t2"><span class="c"># Confirm you are on Python 3.9+ and have pip</span>
+<span class="p">python3</span> --version
+<span class="p">python3</span> -m pip --version
+
+<span class="c"># Option A — isolated virtual environment (recommended)</span>
+<span class="p">python3</span> -m venv ~/.venvs/agent-reach
+<span class="p">source</span> ~/.venvs/agent-reach/bin/activate
+<span class="p">python3</span> -m pip install "https://github.com/Panniantong/agent-reach/archive/main.zip"
+
+<span class="c"># Option B — per-user install</span>
+<span class="p">python3</span> -m pip install --user "https://github.com/Panniantong/agent-reach/archive/main.zip"
+
+<span class="c"># If pip itself is stale</span>
+<span class="p">python3</span> -m pip install --upgrade pip</code></pre>
+          </div>
+          <p>If you use a virtual environment, remember that <code>agent-reach</code> only exists while that environment is active. <code>pipx</code> is a good alternative if you want a globally available command with an isolated environment.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Claude Code does not see the skill</summary>
+        <div class="details__body">
+          <p>Skills are loaded at session start. A session that was already running when you installed will never see it.</p>
+          <div class="code">
+            <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#t3">Copy</button></div>
+<pre><code id="t3"><span class="c"># Fully exit the running session, then start a fresh one</span>
+<span class="p">claude</span></code></pre>
+          </div>
+          <p>Still missing? Re-run <code>npx skills add Panniantong/Agent-Reach@agent-reach</code> and confirm you selected <strong>Claude Code</strong> at the prompt — it is easy to skip past that selection. Then check that a skill file for Agent Reach exists in your Claude Code skills directory before debugging anything else.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>A channel reports unhealthy in <code>doctor</code></summary>
+        <div class="details__body">
+          <p><code>agent-reach doctor</code> is the source of truth. It names the channel, its status, and the fix.</p>
+          <div class="code">
+            <div class="code__bar"><span class="code__title">bash</span><button class="copy-btn" type="button" data-copy="#t4">Copy</button></div>
+<pre><code id="t4"><span class="p">agent-reach</span> doctor</code></pre>
+          </div>
+          <p>Work through the report one channel at a time. Most failures are a missing upstream binary — re-running <code>agent-reach install --env=auto</code> resolves them. If a channel requires an authenticated session, leave it unconfigured unless you have an approved, terms-compliant path to that data; a red line in <code>doctor</code> for a channel you deliberately do not use is a correct result, not a failure.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ CHECKLIST ============ -->
+  <section class="section section--alt" id="checklist">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">08 / Checklist</div>
+        <div>
+          <h2>Before you call it done</h2>
+          <p class="section__sub">Tick every box. The first five are the install; the rest are what makes it safe to actually use.</p>
+        </div>
+      </div>
+      <div class="prose" style="max-width:820px">
+        <p class="checklist-meta"><span id="checklistProgress" aria-live="polite">0 of 12 complete</span> · ticks are for this visit only and are not saved</p>
+        <ul class="checklist">
+          <li><input type="checkbox" id="c1"><label for="c1">Skill added with <code>npx skills add Panniantong/Agent-Reach@agent-reach</code>, with Claude Code selected at the prompt</label></li>
+          <li><input type="checkbox" id="c2"><label for="c2">CLI installed via <code>python3 -m pip install "https://github.com/Panniantong/agent-reach/archive/main.zip"</code></label></li>
+          <li><input type="checkbox" id="c3"><label for="c3"><code>agent-reach install --env=auto</code> completed and its output reviewed</label></li>
+          <li><input type="checkbox" id="c4"><label for="c4"><code>agent-reach doctor</code> run, and every channel you intend to use reports healthy</label></li>
+          <li><input type="checkbox" id="c5"><label for="c5">Claude Code restarted with <code>claude</code> and verified on one low-stakes public request</label></li>
+          <li><input type="checkbox" id="c6"><label for="c6">Scope agreed in writing: public web, search, RSS, GitHub, YouTube transcripts, approved APIs only</label></li>
+          <li><input type="checkbox" id="c7"><label for="c7">No cookies, tokens, credentials, or session data stored in the repository or shared anywhere</label></li>
+          <li><input type="checkbox" id="c8"><label for="c8">ICP defined before any research runs — you know who you are researching and why</label></li>
+          <li><input type="checkbox" id="c9"><label for="c9">Validation and enrichment steps defined, with a source URL attached to every record</label></li>
+          <li><input type="checkbox" id="c10"><label for="c10">Human review sits between research output and anything that gets sent</label></li>
+          <li><input type="checkbox" id="c11"><label for="c11">Suppression lists, opt-out handling, and privacy obligations confirmed current</label></li>
+          <li><input type="checkbox" id="c12"><label for="c12">Success measured on reply quality and meetings — not on volume collected</label></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOURCES ============ -->
+  <section class="section" id="sources">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="section__num">09 / Credit</div>
+        <div>
+          <h2>Credit and sources</h2>
+          <p class="section__sub">Agent Reach is open-source work by Panniantong, released under the MIT licence. This guide documents how TheZaraAI installed it
+            and the guardrails we put around it. It is not affiliated with or endorsed by the project, and Agent Reach is not a TheZaraAI product — we are
+            a user of it, and our commercial offer remains under TheZaraAI.</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Source</th><th scope="col">What it covers</th><th scope="col">Link</th></tr></thead>
+          <tbody>
+            <tr><td>Panniantong / Agent-Reach</td><td>The upstream project: channels, install modes, <code>doctor</code>, uninstall, licence</td><td><a href="https://github.com/Panniantong/Agent-Reach" rel="noopener">github.com/Panniantong/Agent-Reach</a></td></tr>
+            <tr><td>TheZaraAI</td><td>The AI-assisted lead-generation workflow this research layer feeds</td><td><a href="https://thezaraai.com" rel="noopener">thezaraai.com</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:1rem" aria-label="Back to top">
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="10" cy="22" r="2.6" fill="currentColor"/>
+            <path d="M10 15.5a6.5 6.5 0 0 1 6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+            <path d="M10 9.5A12.5 12.5 0 0 1 22.5 22" stroke="currentColor" stroke-width="2" stroke-linecap="square" opacity=".55"/>
+            <path d="M22.5 6.5h3.5V10" stroke="#F2EFE7" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+          <span>TheZaraAI<small>Build log</small></span>
+        </a>
+        <p>Practical build logs for AI-assisted go-to-market work, currently focused on HVAC and selected construction firms. Written to be reproduced, questioned, and improved.</p>
+      </div>
+      <div>
+        <h4>Guide</h4>
+        <ul>
+          <li><a href="#quickstart">Quick start</a></li>
+          <li><a href="#install">Step-by-step install</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#hvac">HVAC &amp; construction example</a></li>
+          <li><a href="#safety">Safe use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+          <li><a href="#checklist">Final checklist</a></li>
+          <li><a href="README.md">Repository README</a></li>
+          <li><a href="LINKEDIN_POST.md">LinkedIn post</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sources</h4>
+        <ul>
+          <li><a href="https://github.com/Panniantong/Agent-Reach" rel="noopener">Panniantong/Agent-Reach</a></li>
+          <li><a href="https://thezaraai.com" rel="noopener">thezaraai.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="yr">2026</span> TheZaraAI — guide content. Agent Reach is MIT-licensed by Panniantong.</span>
+      <span>No credentials, cookies, or tokens are included in this repository.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" role="img" aria-label="TheZaraAI Agent Reach mark">
+  <rect width="32" height="32" rx="5" fill="#0C0C0B"/>
+  <circle cx="10" cy="22" r="2.6" fill="#C9F24E"/>
+  <path d="M10 15.5a6.5 6.5 0 0 1 6.5 6.5" stroke="#C9F24E" stroke-width="2" stroke-linecap="square"/>
+  <path d="M10 9.5A12.5 12.5 0 0 1 22.5 22" stroke="#C9F24E" stroke-width="2" stroke-linecap="square" opacity="0.55"/>
+  <path d="M22.5 6.5h3.5V10" stroke="#F2EFE7" stroke-width="2" stroke-linecap="square"/>
+</svg>

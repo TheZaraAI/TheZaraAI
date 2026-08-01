@@ -63,6 +63,24 @@ I don't write traditional software. What I do is design, orchestrate, and ship *
 
 ---
 
+## 📘 Guides
+
+### [Agent Reach for Claude Code — Install & Validation Guide](https://thezaraai.github.io/TheZaraAI/agent-reach/)
+
+How I installed and validated **Agent Reach** for Claude Code — the exact install commands, a `doctor` validation pass, the research-to-outreach architecture, the safe-use rules I apply before any data touches a campaign, and a troubleshooting section. Public sources only: no logged-in sessions, no cookies, no credentials.
+
+<p align="left">
+  <a href="https://thezaraai.github.io/TheZaraAI/agent-reach/">
+    <img src="https://img.shields.io/badge/Read_the_Guide-Agent_Reach-A855F7?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Read the Agent Reach guide" />
+  </a>
+  &nbsp;
+  <a href="docs/agent-reach/">
+    <img src="https://img.shields.io/badge/Source-docs%2Fagent--reach-7C3AED?style=for-the-badge&logo=github&logoColor=white" alt="Guide source" />
+  </a>
+</p>
+
+---
+
 ## 🛠️ Automation & AI Stack
 
 **AI & Agents**
