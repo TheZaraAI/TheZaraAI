@@ -65,9 +65,9 @@ I don't write traditional software. What I do is design, orchestrate, and ship *
 
 ## 📘 Guides
 
-### [Agent Reach for Claude Code — Install & Validation Guide](https://thezaraai.github.io/TheZaraAI/agent-reach/)
+### [Agent Reach for Claude Code — Starter Guide](https://thezaraai.github.io/TheZaraAI/agent-reach/)
 
-How I installed and validated **Agent Reach** for Claude Code — the exact install commands, a `doctor` validation pass, the research-to-outreach architecture, the safe-use rules I apply before any data touches a campaign, and a troubleshooting section. Public sources only: no logged-in sessions, no cookies, no credentials.
+A free starter guide to **Agent Reach** for Claude Code — the five install commands, a `doctor` validation pass, what the research layer does and does not do, the safe-use boundaries, and troubleshooting. Public sources only: no logged-in sessions, no cookies, no credentials.
 
 <p align="left">
   <a href="https://thezaraai.github.io/TheZaraAI/agent-reach/">

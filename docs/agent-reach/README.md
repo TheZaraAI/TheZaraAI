@@ -1,8 +1,8 @@
-# Agent Reach for Claude Code — Install &amp; Validation Guide
+# Agent Reach for Claude Code — Starter Guide
 
-**A TheZaraAI build log.** How we installed and validated [Agent Reach](https://github.com/Panniantong/Agent-Reach) for Claude Code, what we use it for, and the guardrails we put around it before a single record reaches an outreach campaign.
+**A free starter guide from TheZaraAI.** How to install and validate [Agent Reach](https://github.com/Panniantong/Agent-Reach) for Claude Code, what the research layer does and does not do, and the safe-use boundaries to put around it before you point it at anything.
 
-> **Positioning:** Agent Reach is third-party, MIT-licensed open-source software by [Panniantong](https://github.com/Panniantong/Agent-Reach). It is **internal research infrastructure** that TheZaraAI uses — not a TheZaraAI product, sub-brand, DBA, or separate company. Our commercial offer remains under [TheZaraAI](https://thezaraai.com), with HVAC and selected construction firms as the initial vertical.
+> **Positioning:** Agent Reach is third-party, MIT-licensed open-source software by [Panniantong](https://github.com/Panniantong/Agent-Reach). It is **internal research infrastructure** that TheZaraAI uses — not a TheZaraAI product, sub-brand, DBA, or separate company. Our commercial offer remains under [TheZaraAI](https://thezaraai.com).
 
 ---
 
@@ -14,7 +14,7 @@
 - [Quick start](#quick-start)
 - [Step-by-step walkthrough](#step-by-step-walkthrough)
 - [Architecture: where the research layer sits](#architecture-where-the-research-layer-sits)
-- [Worked example: HVAC and construction](#worked-example-hvac-and-construction)
+- [The guide stops at the research layer](#the-guide-stops-at-the-research-layer)
 - [Safe and compliant use](#safe-and-compliant-use)
 - [Troubleshooting](#troubleshooting)
 - [Final checklist](#final-checklist)
@@ -46,7 +46,7 @@ Agent Reach is a **scaffolding CLI**, not a framework. It installs and configure
 
 **It is:** a research layer that makes an agent's reading repeatable and citable.
 
-**It is not:** a lead generator. It does not produce qualified leads, book meetings, or create revenue. ICP definition, data validation, compliant enrichment, segmentation, messaging, and human review are all still work you have to do.
+**It is not:** a system. It does not decide which questions are worth asking, which answers to trust, or what should happen next. That design work is still yours — see [The guide stops at the research layer](#the-guide-stops-at-the-research-layer).
 
 We also use a deliberately narrower slice of it than it supports — see [Safe and compliant use](#safe-and-compliant-use).
 
@@ -139,117 +139,57 @@ A session that was already running will never see a skill registered after it st
 ## Architecture: where the research layer sits
 
 ```
-  ┌────────────────┐   ┌──────────────────┐   ┌───────────────────────┐
-  │ Public sources │──▶│  Agent Reach     │──▶│ Validation &          │
-  │ web · search   │   │  research layer  │   │ enrichment            │
-  │ RSS · GitHub   │   │  (read only)     │   │ dedupe · verify ·     │
-  │ YT transcripts │   │                  │   │ approved providers    │
-  └────────────────┘   └──────────────────┘   └───────────┬───────────┘
-                                                          │
-  ┌────────────────┐   ┌──────────────────┐   ┌───────────▼───────────┐
-  │  Measurement   │◀──│  Personalised    │◀──│  CRM / Instantly      │
-  │ replies ·      │   │  outreach        │   │  validated records    │
-  │ meetings ·     │   │  human-reviewed  │   │  with source URLs     │
-  │ complaint rate │   │                  │   │                       │
-  └────────────────┘   └──────────────────┘   └───────────────────────┘
+  ┌────────────────┐   ┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
+  │ Public sources │──▶│  Agent Reach     │──▶│  Verification    │──▶│  Action          │
+  │ web · search   │   │  research layer  │   │  second source · │   │  whatever your   │
+  │ RSS · GitHub   │   │  (read only)     │   │  human check     │   │  business does   │
+  │ YT transcripts │   │  source URL kept │   │                  │   │  with a fact     │
+  └────────────────┘   └──────────────────┘   └──────────────────┘   └──────────────────┘
 ```
 
 | Stage | What happens |
 | --- | --- |
 | 1. Public sources | Open web pages, RSS/Atom feeds, public GitHub repositories, YouTube transcripts, platform-approved APIs |
-| 2. Agent Reach research | The agent reads and summarises on request, keeping the source URL alongside every claim |
-| 3. Validation &amp; enrichment | Deduplicate, verify against a second source, confirm currency, enrich only via compliant licensed providers |
-| 4. CRM / Instantly | Only validated records enter the system of record, each with its source and capture date |
-| 5. Personalised outreach | Human-reviewed messaging grounded in a verifiable public fact; suppression and opt-out honoured before send |
-| 6. Measurement | Reply quality, meetings booked, complaint rate — not volume collected |
+| 2. Agent Reach research | The agent reads and summarises those sources on request, keeping the source URL alongside every claim |
+| 3. Verification | A human or a second source confirms the claim is accurate and current before anyone relies on it |
+| 4. Action | Whatever your business actually does with a verified fact — reviewed by a person who is accountable for the decision |
 
-**The rule:** no record moves from stage 2 to stage 4 without a source URL, a validation check, and a named human who reviewed it.
+**The rule:** nothing moves from stage 2 to stage 4 without a source URL, a verification check, and a named human who reviewed it.
+
+This diagram is deliberately generic. What sits inside "verification" and "action" is specific to the
+business doing it, and designing that is the work this guide does not cover.
 
 ---
 
-## Worked example: HVAC and construction
+## The guide stops at the research layer
 
-HVAC and selected construction firms are TheZaraAI's initial vertical. Everything below runs on publicly available information and platform-approved APIs. Agent Reach does the reading in stages 1–2 only; it does not touch logged-in social accounts and it does not guarantee leads.
+Everything above is infrastructure. Getting it installed and healthy is a real milestone — and it is
+also the point at which the interesting problems start.
 
-### Sample ICP filters
+**What you have after five commands.** An agent that can read public sources on request and keep a
+source URL next to every claim. Reproducible, citable research instead of ad hoc searching. That is
+genuinely useful, and for a lot of people it is enough. If that is you, take the install, take the
+safe-use rules, and go.
 
-| Filter | HVAC (residential / light commercial) | Construction (remodel / general contracting) |
-| --- | --- | --- |
-| Trade &amp; classification | HVAC service, repair, replacement — NAICS 238220 | Residential remodel, GC, roofing, specialty trade — NAICS 236118 / 238xxx |
-| Company size | 3–25 field technicians, 2–15 service vehicles | 5–50 employees, owner still involved in estimating |
-| Service area | Defined metro or 45-minute drive radius; 3–6 ZIP clusters | Single metro or county footprint; no national coverage |
-| Decision maker | Owner/operator, general manager, service manager | Owner, principal, head of preconstruction/estimating |
-| Licence status | Active state or county mechanical licence, in good standing | Active contractor licence at the appropriate class and limit |
-| Digital maturity | Live site and claimed Google Business Profile, but no online booking or same-day quote path | Site with project gallery, contact form as the only intake |
-| Hard exclusions | National franchises and PE roll-ups, out-of-area firms, no verifiable licence or address, anyone on the suppression list, any record whose source URL cannot be re-checked | ← same |
+**What you do not have.** A system. A research layer answers questions you already knew to ask. It
+does not decide which questions are worth asking, which answers to trust, or what should happen
+next. That gap is not a tooling problem, and no install sequence closes it.
 
-### Compliant discovery sources
+### The design work that sits on top
 
-- **Google Business Profile** — publicly listed name, category, address, service area, hours, rating, website. Read public listing pages, or use the official Places API under its terms with your own key when you need volume.
-- **Company websites** — services, service-area pages, brands installed, team/about pages, careers pages, financing options, stated response times.
-- **Public directories and trade associations** — public business directory and BBB listings, member directories such as ACCA, PHCC, NAHB, NARI. Read the public page; do not create accounts to get behind a gate.
-- **Permit and licensing records** — state contractor/mechanical licence boards and municipal or county permit portals, **where the data is published for public access and the terms allow automated reading**. Check terms and rate limits first; some sources require a formal records request instead.
-- **Public social and business pages** — only what a signed-out visitor can see: a public company page, a public job post, a public YouTube channel and its transcripts. No logged-in sessions, no cookie reuse, no gated profile data.
-- **Approved data providers** — licensed B2B data and email-verification vendors under contract, with a documented lawful basis. Used for enrichment after a firm has already passed the ICP filter.
+Turning a research layer into something a business can depend on means deciding, deliberately and in
+this order: which market you are serving, how you qualify inside it, which sources you are willing to
+trust, how claims get validated, how records are scored, how they are enriched, how they hand off to
+the systems your team already uses, how outreach is orchestrated and reviewed, how any of it is
+measured, and who is accountable when it is wrong.
 
-### The workflow
+Each of those is a design decision with real consequences, and each one is specific to the business
+making it. There is no generic answer worth publishing — which is why this guide does not pretend to
+have one. That layer is what TheZaraAI designs with clients; it is not published here.
 
-**Stage 1 — Discover.** Ask the agent for firms in the target ZIP clusters, requiring a source URL for every field:
-
-```text
-Build a candidate list of independent HVAC and residential construction
-firms serving ZIP codes 27601, 27604, 27609, 27612.
-
-Use only publicly accessible sources: public business listings, company
-websites, public trade-association directories, and public licence or
-permit records where the site's terms allow automated reading.
-Do not use logged-in sessions, cookies, or gated profile data.
-
-For each firm return: legal/trading name, website, city, service area,
-services offered, apparent headcount signal, licence number if public,
-and the exact source URL for every field. Mark anything you inferred
-as "inferred" rather than stating it as fact.
-```
-
-**Stage 2 — Validate the firm and the decision-maker role.** Two independent public sources must agree before a record advances.
-
-- *Company is active:* licence board record + business registration/Secretary of State filing + live website.
-- *Role is real and current:* licence holder or qualifying party on the public licence record, an about/team page, a permit applicant name, or a signed public post from the company page.
-- *Still trading:* recent reviews, a recent permit, a current job post, or a dated site update in the last 6–12 months.
-- *Reject:* a role that appears in only one unverifiable place, franchise-owned locations, and any record whose source URL no longer resolves.
-
-**Stage 3 — Enrich through approved providers only.** Contact details come from licensed providers under contract, never from harvesting. Every enriched field carries provider, retrieval date, and lawful basis. Verify deliverability, apply suppression and opt-out lists at ingestion, drop anything the provider cannot substantiate.
-
-**Stage 4 — Segment** by service area (ZIP cluster or drive-time band), size band (owner-operator 1–4, small crew 5–15, established 16–50), and trigger signal. No trigger means no personalised angle — the record waits in nurture.
-
-**Stage 5 — Route into Instantly.** Only records that cleared stages 2–3, carry a source URL, and passed human review get uploaded. One campaign per segment, custom fields mapped so personalisation is grounded in the verified fact:
-
-```text
-company_name, trade, website, city, state, zip, service_area
-size_band, licence_number, licence_status, licence_source_url
-contact_first_name, contact_role, role_source_url
-email, email_verification_status, enrichment_provider, enrichment_date
-trigger_signal, trigger_date, trigger_source_url
-segment_id, reviewed_by, reviewed_at, suppression_checked
-```
-
-Keep sending volume inside warmed capacity. Treat complaint and bounce rates as hard stops, and pull the campaign — not just the record — if either drifts.
-
-### Trigger signals
-
-| Signal | Public source | Why it matters |
-| --- | --- | --- |
-| Hiring installers, techs, or estimators | Careers page, public job post | Demand outrunning capacity; intake and scheduling under strain |
-| New or upgraded contractor licence class | State licence board record | Moving into larger or different work |
-| Rising permit volume, or a first permit in a new municipality | Public permit portal, where lawful to read | Expansion, usually before the back office catches up |
-| New location, second yard, fleet expansion | Website, public listing, public company page | Growth spend already committed |
-| Reviews mentioning slow quotes or missed callbacks | Public review content | A named, verifiable operational problem |
-| No online booking or after-hours intake | Company website | Observable gap; no guessing at internals |
-| Seasonal inflection (pre-cooling / pre-heating) | Calendar plus local weather reporting | Timing rather than personalisation |
-| New financing, maintenance plan, or service agreement page | Company website | Investing in recurring revenue; open to process change |
-| New trade-association membership or certification | Public association directory | Invests in standards — usually a better-fit buyer |
-
-**None of this guarantees leads.** It produces a defensible, source-linked shortlist that matches a defined ICP. Whether that becomes pipeline depends on the offer, the message, the timing, and the humans reviewing it.
+> **Read this as a starter guide.** This is a starter guide to a third-party open-source tool. It is
+> not a complete go-to-market workflow, and it is not TheZaraAI's client methodology. What is
+> published here is the part that is genuinely reusable by anyone.
 
 ---
 
@@ -366,11 +306,11 @@ agent-reach doctor
 - [ ] Claude Code restarted with `claude` and verified on one low-stakes public request
 - [ ] Scope agreed in writing: public web, search, RSS, GitHub, YouTube transcripts, approved APIs only
 - [ ] No cookies, tokens, credentials, or session data in the repository or shared anywhere
-- [ ] ICP defined before any research runs
-- [ ] Validation and enrichment steps defined, with a source URL on every record
+- [ ] Scope defined before any research runs — you know what you are asking and why
+- [ ] Verification step defined, with a source URL on every claim
 - [ ] Human review sits between research output and anything that gets sent
 - [ ] Suppression lists, opt-out handling, and privacy obligations confirmed current
-- [ ] Success measured on reply quality and meetings, not volume collected
+- [ ] Success measured on the quality of what you act on, not the volume collected
 
 ---
 
@@ -401,14 +341,14 @@ The guide is free and gated behind nothing — no email, no signup, no form. Eve
 
 | CTA | Destination | Who it is for |
 | --- | --- | --- |
-| Book a free 15-minute workflow call | `https://calendly.com/thezaraai/discovery-call` | HVAC and construction firms mapping their own lead-response process. A working session, not a pitch. |
+| Build your research-to-revenue system | `https://calendly.com/thezaraai/discovery-call` | Teams who have the research layer running and now need the system designed around it. A working session, not a pitch. |
 | Get the free AI Field Manual | `https://thezaraai.com/#handbook` | Lower-intent readers who would rather receive a written resource by email than talk to anyone. |
 
 Both in-guide links carry UTM parameters so guide traffic stays attributable:
 
 ```
-?utm_source=github&utm_medium=agent_reach_guide&utm_campaign=home_services   # the call
-?utm_source=github&utm_medium=agent_reach_guide&utm_campaign=agent_reach     # the Field Manual
+?utm_source=github&utm_medium=agent_reach_guide&utm_campaign=agent_reach_guide   # the call
+?utm_source=github&utm_medium=agent_reach_guide&utm_campaign=agent_reach_guide   # the Field Manual
 ```
 
 Rules that keep the funnel honest, and that a fork should keep:
@@ -427,4 +367,4 @@ The ready-to-publish LinkedIn post and its first comment live in [`LINKEDIN_POST
 - **Agent Reach** — created by Panniantong, MIT licensed: <https://github.com/Panniantong/Agent-Reach>
 - **TheZaraAI** — <https://thezaraai.com>
 
-This guide documents one team's install and the guardrails around it. It is not affiliated with, or endorsed by, the Agent Reach project. Guide content © TheZaraAI; Agent Reach remains the property of its authors under the MIT licence. Nothing here is legal advice — confirm your own obligations before collecting or contacting.
+This guide documents a public install and the guardrails around it. It is not affiliated with, or endorsed by, the Agent Reach project. Guide content © TheZaraAI; Agent Reach remains the property of its authors under the MIT licence. Nothing here is legal advice — confirm your own obligations before collecting or contacting.

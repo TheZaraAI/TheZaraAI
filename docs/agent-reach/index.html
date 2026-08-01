@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Agent Reach for Claude Code — Install &amp; Validation Guide | TheZaraAI</title>
-<meta name="description" content="How TheZaraAI installed and validated Agent Reach for Claude Code: exact commands, a doctor check, a research-to-outreach architecture, safe-use rules, and a troubleshooting guide.">
+<title>Agent Reach for Claude Code — Starter Guide | TheZaraAI</title>
+<meta name="description" content="A free starter guide to Agent Reach for Claude Code: the five install commands, a doctor validation pass, what the research layer does and does not do, safe-use boundaries, and troubleshooting.">
 <meta name="author" content="Jax — TheZaraAI">
 <meta name="theme-color" content="#0C0C0B">
 <link rel="canonical" href="https://thezaraai.github.io/TheZaraAI/agent-reach/">
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="Agent Reach for Claude Code — Install &amp; Validation Guide">
-<meta property="og:description" content="Exact install commands, a doctor validation pass, a research-to-outreach architecture, and the safe-use rules TheZaraAI applies before any data touches a campaign.">
+<meta property="og:title" content="Agent Reach for Claude Code — Starter Guide">
+<meta property="og:description" content="Five install commands, a doctor validation pass, the safe-use boundaries, and an honest account of where the research layer ends and system design begins.">
 <meta property="og:url" content="https://thezaraai.github.io/TheZaraAI/agent-reach/">
 <meta property="og:image" content="https://thezaraai.github.io/TheZaraAI/agent-reach/assets/img/mark.svg">
 <meta name="twitter:card" content="summary">
@@ -27,8 +27,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Agent Reach for Claude Code — Install & Validation Guide",
-  "description": "How TheZaraAI installed and validated Agent Reach for Claude Code, and how it fits a compliant research-to-outreach workflow.",
+  "headline": "Agent Reach for Claude Code — Starter Guide",
+  "description": "A free starter guide to installing and validating Agent Reach for Claude Code, with safe-use boundaries and troubleshooting.",
   "author": { "@type": "Organization", "name": "TheZaraAI", "url": "https://thezaraai.com" },
   "publisher": { "@type": "Organization", "name": "TheZaraAI", "url": "https://thezaraai.com" },
   "about": "Agent Reach, Claude Code, AI research tooling",
@@ -48,14 +48,14 @@
         <path d="M10 9.5A12.5 12.5 0 0 1 22.5 22" stroke="currentColor" stroke-width="2" stroke-linecap="square" opacity=".55"/>
         <path d="M22.5 6.5h3.5V10" stroke="#F2EFE7" stroke-width="2" stroke-linecap="square"/>
       </svg>
-      <span>TheZaraAI<small>Build log</small></span>
+      <span>TheZaraAI<small>Starter guide</small></span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav class="site-nav" id="siteNav" aria-label="Section navigation">
       <a href="#quickstart">Quick start</a>
       <a href="#install">Install</a>
       <a href="#architecture">Architecture</a>
-      <a href="#hvac">HVAC example</a>
+      <a href="#scope">Where it stops</a>
       <a href="#safety">Safe use</a>
       <a href="#troubleshooting">Troubleshooting</a>
       <a href="#checklist">Checklist</a>
@@ -68,22 +68,22 @@
   <section class="hero" id="top">
     <div class="wrap hero__grid">
       <div>
-        <p class="eyebrow">Field notes · Build log</p>
-        <h1>We gave Claude Code a <em>research layer</em>. Here is exactly how.</h1>
+        <p class="eyebrow">Field notes · Starter guide</p>
+        <h1>Give Claude Code a <em>research layer</em> in five commands.</h1>
         <p class="hero__lede">
-          A step-by-step, reproducible walkthrough of how Jax at TheZaraAI installed and validated
-          <strong>Agent Reach</strong> for Claude Code — plus the guardrails we put around it before
-          a single record touches an outreach campaign.
+          A free starter guide: install <strong>Agent Reach</strong>, validate it with one diagnostic
+          command, and understand the safe-use boundaries before you point it at anything. It covers
+          the infrastructure — not the strategy you build on top of it.
         </p>
         <div class="btn-row">
           <a class="btn btn--primary" href="#quickstart">Jump to quick start</a>
-          <a class="btn btn--cta" href="https://calendly.com/thezaraai/discovery-call?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=home_services" target="_blank" rel="noopener noreferrer">Book a free 15-minute workflow call<span class="u-sr-only"> (opens in a new tab)</span></a>
+          <a class="btn btn--cta" href="https://calendly.com/thezaraai/discovery-call?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach_guide" target="_blank" rel="noopener noreferrer">Build your research-to-revenue system<span class="u-sr-only"> (opens in a new tab)</span></a>
           <a class="btn" href="https://github.com/Panniantong/Agent-Reach" rel="noopener">Agent Reach on GitHub</a>
         </div>
         <p class="hero__cta-note">
-          The guide is free and needs no email. The call is for HVAC and construction teams mapping
-          their own lead-response workflow — we look at your current process and where a research
-          layer would actually help. Prefer email? <a href="https://thezaraai.com/?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach#handbook" target="_blank" rel="noopener noreferrer">Get the free AI Field Manual<span class="u-sr-only"> (opens in a new tab)</span></a>.
+          The guide is free and needs no email. The call is for teams who have the research layer
+          running and now need the system around it — <a href="#scope">see where this guide stops</a>.
+          Prefer email? <a href="https://thezaraai.com/?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach_guide#handbook" target="_blank" rel="noopener noreferrer">Get the free AI Field Manual<span class="u-sr-only"> (opens in a new tab)</span></a>.
         </p>
         <div class="hero__meta">
           <span><b>Stack</b> Claude Code · Python 3 · npx</span>
@@ -97,7 +97,7 @@
         <p>Agent Reach is a scaffolding CLI that installs and wires up the upstream tools an AI agent needs to read the open web — then tells you what works with one diagnostic command
           (<a href="https://github.com/Panniantong/Agent-Reach" rel="noopener">Panniantong/Agent-Reach</a>).</p>
         <p>It is <strong>research infrastructure</strong>. It does not produce qualified leads, and this guide does not treat it as if it does.</p>
-        <p><span style="color:var(--accent)">→</span> Five commands. One <code>doctor</code> check. Then the boring, important part: scope, validation, and human review.</p>
+        <p><span style="color:var(--accent)">→</span> Five commands. One <code>doctor</code> check. Then the part no tool does for you: scope, validation, and human review.</p>
         <p style="margin-bottom:0; color:var(--text-faint); font-size:var(--text-sm)">Agent Reach is third-party open-source software we use internally. It is not a TheZaraAI product, sub-brand, or separate company.</p>
       </aside>
     </div>
@@ -109,15 +109,15 @@
       <div class="section__head">
         <div class="section__num">01 / Context</div>
         <div>
-          <h2>Why we added a research layer</h2>
-          <p class="section__sub">TheZaraAI runs an AI-assisted lead-generation workflow. The weakest link was never the sending
-            infrastructure — it was the research in front of it.</p>
+          <h2>Why a research layer is worth adding</h2>
+          <p class="section__sub">For most teams the weakest link is not the tooling that acts — it is the research
+            sitting in front of it.</p>
         </div>
       </div>
       <div class="grid grid--3">
         <div class="card">
           <h3>The problem</h3>
-          <p>Research on local HVAC and construction firms was manual, inconsistent, and slow. Every prospect list arrived with different fields, different freshness, and no traceable source.</p>
+          <p>Manual research is slow and inconsistent. The same question asked twice returns different fields, different freshness, and no traceable source.</p>
         </div>
         <div class="card">
           <h3>The hypothesis</h3>
@@ -125,21 +125,21 @@
         </div>
         <div class="card">
           <h3>The honest scope</h3>
-          <p>Better inputs, not automatic outcomes. Nothing here shortens the work of defining an ICP, validating data, or reviewing a message before it ships.</p>
+          <p>Better inputs, not automatic outcomes. Nothing here shortens the work of deciding who you are researching, validating what comes back, or reviewing it before it is used.</p>
         </div>
       </div>
 
       <div class="note">
         <div class="note__label">How this fits TheZaraAI</div>
         <p style="margin-bottom:0">Agent Reach is <strong>internal research infrastructure</strong>, not something we sell, rebrand, or spin out.
-          The commercial offer stays exactly where it is — under TheZaraAI — with HVAC and selected construction firms as the initial vertical.
-          There is no separate product name, no DBA, and no new entity behind this work.</p>
+          The commercial offer stays exactly where it is — under TheZaraAI. There is no separate product name, no DBA,
+          and no new entity behind this work.</p>
       </div>
 
       <div class="note note--warn">
         <div class="note__label">What this is not</div>
         <p style="margin-bottom:0">Agent Reach does not generate qualified leads, book meetings, or produce revenue on its own. It is a read layer.
-          Everything downstream — ICP definition, data validation, compliant enrichment, message quality, and human review — is still your job.</p>
+          Everything downstream — deciding who to research, validating what comes back, and reviewing it before it is used — is still your job.</p>
       </div>
     </div>
   </section>
@@ -267,187 +267,78 @@
         <div class="section__num">04 / Architecture</div>
         <div>
           <h2>Where the research layer actually sits</h2>
-          <p class="section__sub">Agent Reach occupies exactly one box in this diagram. The boxes on either side of it are where the quality comes from.</p>
+          <p class="section__sub">Agent Reach occupies exactly one box below. The boxes on either side of it are where the quality comes from —
+            and they are the ones this guide does not design for you.</p>
         </div>
       </div>
 
       <ol class="pipeline">
         <li><span class="k">Stage 01</span><b>Public sources</b><span class="d">Open web pages, RSS/Atom feeds, public GitHub repositories, YouTube transcripts, platform-approved APIs.</span></li>
         <li><span class="k">Stage 02</span><b>Agent Reach research</b><span class="d">The agent reads and summarises those sources on request, with the source URL kept alongside every claim.</span></li>
-        <li><span class="k">Stage 03</span><b>Validation &amp; enrichment</b><span class="d">Deduplicate, verify against a second source, confirm the record is current, enrich only through compliant, licensed providers.</span></li>
-        <li><span class="k">Stage 04</span><b>CRM / Instantly</b><span class="d">Only validated records enter the system of record, each carrying its source and the date it was captured.</span></li>
-        <li><span class="k">Stage 05</span><b>Personalised outreach</b><span class="d">Human-reviewed messaging grounded in a verifiable, public fact — with suppression lists and opt-out honoured before send.</span></li>
-        <li><span class="k">Stage 06</span><b>Measurement</b><span class="d">Reply quality, meetings booked, and complaint rate. Research quality is judged by outcomes, not by volume collected.</span></li>
+        <li><span class="k">Stage 03</span><b>Verification</b><span class="d">A human or a second source confirms the claim is accurate and current before anyone relies on it.</span></li>
+        <li><span class="k">Stage 04</span><b>Action</b><span class="d">Whatever your business actually does with a verified fact — reviewed by a person who is accountable for the decision.</span></li>
       </ol>
 
       <div class="note">
         <div class="note__label">The rule we hold ourselves to</div>
-        <p style="margin-bottom:0">No record moves from Stage 02 to Stage 04 without a source URL, a validation check, and a named human who reviewed it.
+        <p style="margin-bottom:0">Nothing moves from Stage 02 to Stage 04 without a source URL, a verification check, and a named human who reviewed it.
           A research layer that lets you skip those steps is not a speed-up — it is a liability generator.</p>
+      </div>
+
+      <div class="note note--warn">
+        <div class="note__label">Deliberately generic</div>
+        <p style="margin-bottom:0">Stages 03 and 04 are drawn at the highest possible level on purpose. What belongs in them depends
+          entirely on your market, your obligations, and your risk tolerance — which is the design work described in
+          <a href="#scope">the next section</a>.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ HVAC / CONSTRUCTION WORKED EXAMPLE ============ -->
-  <section class="section" id="hvac">
+  <!-- ============ WHERE THE GUIDE STOPS ============ -->
+  <section class="section" id="scope">
     <div class="wrap">
       <div class="section__head">
-        <div class="section__num">05 / Worked example</div>
+        <div class="section__num">05 / Scope</div>
         <div>
-          <h2>HVAC and construction firms, end to end</h2>
-          <p class="section__sub">HVAC and selected construction firms are TheZaraAI's initial vertical, and this is the primary use case for the
-            research layer — so it is worth showing in full. Everything below runs on publicly available
-            information and platform-approved APIs. Agent Reach does the reading in stages 1 and 2 only — it does not access logged-in
-            social accounts, and it does not produce a qualified lead on its own.</p>
+          <h2>The guide stops at the research layer</h2>
+          <p class="section__sub">Everything above is infrastructure. Getting it installed and healthy is a real milestone —
+            and it is also the point at which the interesting problems start.</p>
         </div>
       </div>
 
-      <h3 style="font-size:var(--text-lg)">Sample ICP filters</h3>
-      <p class="prose" style="color:var(--text-muted)">Write these down <em>before</em> you research anything. An undefined ICP turns a research layer into a list generator.</p>
-      <div class="table-wrap" style="margin-bottom:var(--space-8)">
-        <table>
-          <thead>
-            <tr><th scope="col">Filter</th><th scope="col">HVAC (residential / light commercial)</th><th scope="col">Construction (remodel / general contracting)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Trade &amp; classification</td><td>HVAC service, repair, and replacement — NAICS 238220</td><td>Residential remodel, GC, roofing, or specialty trade — NAICS 236118 / 238xxx</td></tr>
-            <tr><td>Company size</td><td>3–25 field technicians, 2–15 service vehicles</td><td>5–50 employees, owner still involved in estimating</td></tr>
-            <tr><td>Service area</td><td>Within a defined metro or 45-minute drive radius; 3–6 ZIP clusters</td><td>Single metro or county footprint; no national coverage</td></tr>
-            <tr><td>Decision maker</td><td>Owner / operator, general manager, or service manager</td><td>Owner, principal, or head of preconstruction / estimating</td></tr>
-            <tr><td>Licence status</td><td>Active state or county mechanical licence, in good standing</td><td>Active contractor licence at the appropriate class and limit</td></tr>
-            <tr><td>Digital maturity</td><td>Live website and a claimed Google Business Profile, but no online booking or same-day quote path</td><td>Website with a project gallery, but a contact form as the only intake</td></tr>
-            <tr><td>Hard exclusions</td><td colspan="2">National franchises and PE roll-ups, firms outside the service radius, records with no verifiable licence or address, anyone on the suppression or do-not-contact list, and any record whose source URL cannot be re-checked.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 style="font-size:var(--text-lg)">Where the data legitimately comes from</h3>
-      <div class="grid grid--3" style="margin-bottom:var(--space-8)">
+      <div class="grid grid--2">
         <div class="card">
-          <h3>Google Business Profile</h3>
-          <p>Publicly listed firm name, category, address, service area, hours, rating, and website — read from public listing pages or, where you need it at volume, through the official Places API under its terms and your own key.</p>
+          <h3>What you have after five commands</h3>
+          <p>An agent that can read public sources on request and keep a source URL next to every claim. Reproducible,
+            citable research instead of ad hoc searching.</p>
+          <p style="margin-bottom:0">That is genuinely useful, and for a lot of people it is enough. If that is you,
+            take the install, take the safe-use rules, and go.</p>
         </div>
         <div class="card">
-          <h3>Company websites</h3>
-          <p>Services offered, service-area pages, brands installed, team and "about" pages, careers pages, financing options, and stated response times. The richest and least ambiguous source.</p>
-        </div>
-        <div class="card">
-          <h3>Public directories &amp; associations</h3>
-          <p>Public business directory listings, BBB profiles, and trade-body member directories such as ACCA, PHCC, NAHB, or NARI. Read the public page; do not create accounts to get behind a gate.</p>
-        </div>
-        <div class="card">
-          <h3>Permit &amp; licensing records</h3>
-          <p>State contractor and mechanical licence boards, and municipal or county permit portals — <strong>where the data is published for public access and the terms allow automated reading</strong>. Check the portal's terms and rate limits first; some require a formal records request instead.</p>
-        </div>
-        <div class="card">
-          <h3>Public social &amp; business pages</h3>
-          <p>Only pages a signed-out visitor can see: a public company page, a public job post, a public YouTube channel and its transcripts. No logged-in sessions, no cookie reuse, no gated profile data.</p>
-        </div>
-        <div class="card">
-          <h3>Approved data providers</h3>
-          <p>For contact-level detail: licensed B2B data and email-verification vendors with a documented lawful basis and a contract. This is enrichment, not collection — and it happens after the firm already passed the ICP filter.</p>
+          <h3>What you do not have</h3>
+          <p>A system. A research layer answers questions you already knew to ask. It does not decide which questions
+            are worth asking, which answers to trust, or what should happen next.</p>
+          <p style="margin-bottom:0">That gap is not a tooling problem, and no install sequence closes it.</p>
         </div>
       </div>
 
-      <h3 style="font-size:var(--text-lg)">The compliant workflow</h3>
-      <ol class="steps" style="margin-bottom:var(--space-8)">
-        <li class="step">
-          <div class="step__n">STAGE 01</div>
-          <div>
-            <h3>Discover firms in the service area</h3>
-            <p>Ask the agent for HVAC and construction firms operating in the target ZIP clusters, and require a source URL for every row. Output is a raw candidate list — nothing more.</p>
-            <div class="code">
-              <div class="code__bar"><span class="code__title">example brief to the agent</span><button class="copy-btn" type="button" data-copy="#h1">Copy</button></div>
-<pre><code id="h1"><span class="c"># Paste into Claude Code after the install is validated</span>
-Build a candidate list of independent HVAC and residential construction
-firms serving ZIP codes 27601, 27604, 27609, 27612.
-
-Use only publicly accessible sources: public business listings, company
-websites, public trade-association directories, and public licence or
-permit records where the site's terms allow automated reading.
-Do not use logged-in sessions, cookies, or gated profile data.
-
-For each firm return: legal/trading name, website, city, service area,
-services offered, apparent headcount signal, licence number if public,
-and the exact source URL for every field. Mark anything you inferred
-as "inferred" rather than stating it as fact.</code></pre>
-            </div>
-          </div>
-        </li>
-        <li class="step">
-          <div class="step__n">STAGE 02</div>
-          <div>
-            <h3>Validate the firm and the decision-maker role</h3>
-            <p>A name on a website is not a validated contact. We require <strong>two independent public sources</strong> agreeing on both the company and the person's role before the record advances.</p>
-            <ul class="prose" style="color:var(--text-muted)">
-              <li><strong>Company exists and is active:</strong> licence board record, business registration or Secretary of State filing, and a live website.</li>
-              <li><strong>Role is real and current:</strong> the licence holder or qualifying party named on the public licence record, an "our team" or "about" page, a permit applicant name, or a signed public post from the company page.</li>
-              <li><strong>Still trading:</strong> recent reviews, a recent permit, a current job post, or a dated site update within the last 6–12 months.</li>
-              <li><strong>Reject on sight:</strong> role that only appears in one unverifiable place, franchise-owned locations, and any record whose source URL no longer resolves.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="step">
-          <div class="step__n">STAGE 03</div>
-          <div>
-            <h3>Enrich through approved providers only</h3>
-            <p>Business contact details come from licensed providers under contract, not from harvesting. Every enriched field carries its provider, the retrieval date, and a lawful basis. Verify deliverability before send, honour suppression and opt-out lists at ingestion, and drop any record the provider cannot substantiate.</p>
-          </div>
-        </li>
-        <li class="step">
-          <div class="step__n">STAGE 04</div>
-          <div>
-            <h3>Segment by service area, size, and signal</h3>
-            <p>Segmentation is what makes the later message specific. We split on three axes and treat each combination as its own small campaign.</p>
-            <ul class="prose" style="color:var(--text-muted)">
-              <li><strong>Service area:</strong> ZIP cluster or drive-time band — it changes the local proof points you can cite.</li>
-              <li><strong>Size band:</strong> owner-operator (1–4), small crew (5–15), established (16–50). Each has a different bottleneck and a different buyer.</li>
-              <li><strong>Signal:</strong> the specific, dated, public trigger below. No trigger, no personalised angle — the record waits in the nurture segment instead.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="step">
-          <div class="step__n">STAGE 05</div>
-          <div>
-            <h3>Route qualified records into Instantly</h3>
-            <p>Only records that cleared stages 2 and 3, carry a source URL, and passed human review get uploaded. One campaign per segment, custom fields mapped so the personalisation is grounded in the verified fact rather than invented.</p>
-            <div class="code">
-              <div class="code__bar"><span class="code__title">record schema · one row per firm</span><button class="copy-btn" type="button" data-copy="#h2">Copy</button></div>
-<pre><code id="h2">company_name, trade, website, city, state, zip, service_area
-size_band, licence_number, licence_status, licence_source_url
-contact_first_name, contact_role, role_source_url
-email, email_verification_status, enrichment_provider, enrichment_date
-trigger_signal, trigger_date, trigger_source_url
-segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
-            </div>
-            <p>Then keep sending volume inside your warmed capacity, watch complaint and bounce rates as hard stops, and pull the campaign — not just the record — if either drifts.</p>
-          </div>
-        </li>
-      </ol>
-
-      <h3 style="font-size:var(--text-lg)">Trigger signals worth acting on</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th scope="col">Signal</th><th scope="col">Public source</th><th scope="col">Why it matters</th></tr></thead>
-          <tbody>
-            <tr><td>Hiring installers, techs, or estimators</td><td>Careers page, public job post</td><td>Demand is outrunning capacity — intake and scheduling are under strain</td></tr>
-            <tr><td>New or upgraded contractor licence class</td><td>State licence board record</td><td>The firm is moving into larger or different work</td></tr>
-            <tr><td>Rising permit volume or a first permit in a new municipality</td><td>Public permit portal, where lawful to read</td><td>Geographic or volume expansion, usually before the back office catches up</td></tr>
-            <tr><td>New location, second yard, or fleet expansion</td><td>Website, public business listing, public company page</td><td>Growth spend is already committed; operational gaps get expensive fast</td></tr>
-            <tr><td>Reviews mentioning slow quotes or missed callbacks</td><td>Public review content on business listings</td><td>A named, verifiable operational problem you can speak to directly</td></tr>
-            <tr><td>No online booking or after-hours intake</td><td>Company website</td><td>Observable gap, easy to reference without guessing at internals</td></tr>
-            <tr><td>Seasonal inflection — pre-cooling or pre-heating season</td><td>Calendar plus local weather reporting</td><td>Timing, not personalisation: the same message lands differently in April</td></tr>
-            <tr><td>New financing, maintenance plan, or service agreement page</td><td>Company website changelog or new page</td><td>The firm is investing in recurring revenue and is open to process change</td></tr>
-            <tr><td>Recent trade-association membership or certification</td><td>Public association directory</td><td>Signals a firm that invests in standards — usually a better-fit buyer</td></tr>
-          </tbody>
-        </table>
+      <div class="note">
+        <div class="note__label">The design work that sits on top</div>
+        <p>Turning a research layer into something a business can depend on means deciding, deliberately and in this
+          order: which market you are serving, how you qualify inside it, which sources you are willing to trust, how
+          claims get validated, how records are scored, how they are enriched, how they hand off to the systems your
+          team already uses, how outreach is orchestrated and reviewed, how any of it is measured, and who is
+          accountable when it is wrong.</p>
+        <p style="margin-bottom:0">Each of those is a design decision with real consequences, and each one is specific
+          to the business making it. There is no generic answer worth publishing — which is why this guide does not
+          pretend to have one.</p>
       </div>
 
       <div class="note note--warn">
-        <div class="note__label">Say this out loud before you start</div>
-        <p style="margin-bottom:0">None of this guarantees leads. It produces a defensible, source-linked shortlist of HVAC and construction firms that match a
-          defined ICP. Whether that turns into pipeline depends on the offer, the message, the timing, and the humans reviewing it —
-          not on the research tool.</p>
+        <div class="note__label">Read this as a starter guide</div>
+        <p style="margin-bottom:0">This page is a starter guide to a third-party open-source tool. It is not a complete
+          go-to-market workflow, and it is not TheZaraAI's client methodology. What is published here is the part that
+          is genuinely reusable by anyone; the strategy layer is designed per client and stays with them.</p>
       </div>
     </div>
   </section>
@@ -606,7 +497,7 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
           <li><input type="checkbox" id="c5"><label for="c5">Claude Code restarted with <code>claude</code> and verified on one low-stakes public request</label></li>
           <li><input type="checkbox" id="c6"><label for="c6">Scope agreed in writing: public web, search, RSS, GitHub, YouTube transcripts, approved APIs only</label></li>
           <li><input type="checkbox" id="c7"><label for="c7">No cookies, tokens, credentials, or session data stored in the repository or shared anywhere</label></li>
-          <li><input type="checkbox" id="c8"><label for="c8">ICP defined before any research runs — you know who you are researching and why</label></li>
+          <li><input type="checkbox" id="c8"><label for="c8">Scope defined before any research runs — you know what you are asking and why</label></li>
           <li><input type="checkbox" id="c9"><label for="c9">Validation and enrichment steps defined, with a source URL attached to every record</label></li>
           <li><input type="checkbox" id="c10"><label for="c10">Human review sits between research output and anything that gets sent</label></li>
           <li><input type="checkbox" id="c11"><label for="c11">Suppression lists, opt-out handling, and privacy obligations confirmed current</label></li>
@@ -622,19 +513,19 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
       <div class="cta reveal">
         <div class="cta__main">
           <p class="eyebrow">Next step</p>
-          <h2>Book a free 15-minute workflow call</h2>
+          <h2>Build your research-to-revenue system</h2>
           <p>
-            If you run an HVAC or construction business, this is a working session, not a pitch: we
-            map how a lead reaches you today, where it stalls, and whether a research layer like the
-            one above is worth adding. You will get a straight answer either way — including
-            "not yet," which is often the right one.
+            You have the research layer. The system around it — which market you serve, how you
+            qualify, what you trust, how it is validated, scored, handed off, reviewed, and measured —
+            is the part that has to be designed for your business. That is the conversation. You will
+            get a straight answer either way, including "not yet," which is often the right one.
           </p>
           <p class="cta__fineprint">
             Fifteen minutes. No cost, no obligation. We cannot promise leads or results — anyone who
             does is guessing.
           </p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="https://calendly.com/thezaraai/discovery-call?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=home_services" target="_blank" rel="noopener noreferrer">Book the 15-minute call<span class="u-sr-only"> (opens in a new tab)</span></a>
+            <a class="btn btn--primary" href="https://calendly.com/thezaraai/discovery-call?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach_guide" target="_blank" rel="noopener noreferrer">Build your research-to-revenue system<span class="u-sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
 
@@ -642,11 +533,10 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
           <h3 id="fieldmanual">Not ready to talk?</h3>
           <p>
             The <strong>AI Field Manual</strong> is our free written resource on AI-assisted
-            go-to-market work for home-services businesses. Request it on TheZaraAI and it arrives
-            by email — no call required.
+            go-to-market work. Request it on TheZaraAI and it arrives by email — no call required.
           </p>
           <p>
-            <a class="btn" href="https://thezaraai.com/?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach#handbook" target="_blank" rel="noopener noreferrer">Get the free AI Field Manual<span class="u-sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href="https://thezaraai.com/?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach_guide#handbook" target="_blank" rel="noopener noreferrer">Get the free AI Field Manual<span class="u-sr-only"> (opens in a new tab)</span></a>
           </p>
           <p class="cta__fineprint" style="margin-bottom:0">
             The guide you just read stays free and needs no email. Everything above is reproducible
@@ -674,7 +564,7 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
           <thead><tr><th scope="col">Source</th><th scope="col">What it covers</th><th scope="col">Link</th></tr></thead>
           <tbody>
             <tr><td>Panniantong / Agent-Reach</td><td>The upstream project: channels, install modes, <code>doctor</code>, uninstall, licence</td><td><a href="https://github.com/Panniantong/Agent-Reach" rel="noopener">github.com/Panniantong/Agent-Reach</a></td></tr>
-            <tr><td>TheZaraAI</td><td>The AI-assisted lead-generation workflow this research layer feeds</td><td><a href="https://thezaraai.com" rel="noopener">thezaraai.com</a></td></tr>
+            <tr><td>TheZaraAI</td><td>Author of this guide; AI-assisted go-to-market consulting</td><td><a href="https://thezaraai.com" rel="noopener">thezaraai.com</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -693,9 +583,9 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
             <path d="M10 9.5A12.5 12.5 0 0 1 22.5 22" stroke="currentColor" stroke-width="2" stroke-linecap="square" opacity=".55"/>
             <path d="M22.5 6.5h3.5V10" stroke="#F2EFE7" stroke-width="2" stroke-linecap="square"/>
           </svg>
-          <span>TheZaraAI<small>Build log</small></span>
+          <span>TheZaraAI<small>Starter guide</small></span>
         </a>
-        <p>Practical build logs for AI-assisted go-to-market work, currently focused on HVAC and selected construction firms. Written to be reproduced, questioned, and improved.</p>
+        <p>Practical starter guides for AI-assisted go-to-market work. Written to be reproduced, questioned, and improved.</p>
       </div>
       <div>
         <h4>Guide</h4>
@@ -703,7 +593,7 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
           <li><a href="#quickstart">Quick start</a></li>
           <li><a href="#install">Step-by-step install</a></li>
           <li><a href="#architecture">Architecture</a></li>
-          <li><a href="#hvac">HVAC &amp; construction example</a></li>
+          <li><a href="#scope">Where the guide stops</a></li>
           <li><a href="#safety">Safe use</a></li>
         </ul>
       </div>
@@ -719,8 +609,8 @@ segment_id, reviewed_by, reviewed_at, suppression_checked</code></pre>
       <div>
         <h4>Work with us</h4>
         <ul>
-          <li><a href="https://calendly.com/thezaraai/discovery-call?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=home_services" target="_blank" rel="noopener noreferrer">Book a free 15-minute call<span class="u-sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="https://thezaraai.com/?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach#handbook" target="_blank" rel="noopener noreferrer">Free AI Field Manual<span class="u-sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://calendly.com/thezaraai/discovery-call?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach_guide" target="_blank" rel="noopener noreferrer">Book a free 15-minute call<span class="u-sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://thezaraai.com/?utm_source=github&amp;utm_medium=agent_reach_guide&amp;utm_campaign=agent_reach_guide#handbook" target="_blank" rel="noopener noreferrer">Free AI Field Manual<span class="u-sr-only"> (opens in a new tab)</span></a></li>
         </ul>
         <h4 style="margin-top:var(--space-6)">Sources</h4>
         <ul>
